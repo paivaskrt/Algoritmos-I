@@ -2,7 +2,6 @@
 
 using namespace std;
 
-// Estrutura para armazenar informações do jogador
 struct Jogador
 {
     string nome;
@@ -11,7 +10,6 @@ struct Jogador
     int empates;
 };
 
-// Função para imprimir o tabuleiro
 void imprimirTabuleiro(char tabuleiro[3][3])
 {
     cout << " " << tabuleiro[0][0] << " | " << tabuleiro[0][1] << " | " << tabuleiro[0][2] << endl;
@@ -21,10 +19,9 @@ void imprimirTabuleiro(char tabuleiro[3][3])
     cout << " " << tabuleiro[2][0] << " | " << tabuleiro[2][1] << " | " << tabuleiro[2][2] << endl;
 }
 
-// Função para verificar vitória
 bool verificarVitoria(char tabuleiro[3][3], char jogador)
 {
-    // Verificar linhas e colunas
+ 
     for (int i = 0; i < 3; i++)
     {
         if (tabuleiro[i][0] == jogador && tabuleiro[i][1] == jogador && tabuleiro[i][2] == jogador)
@@ -36,7 +33,7 @@ bool verificarVitoria(char tabuleiro[3][3], char jogador)
             return true;
         }
     }
-    // Verificar diagonais
+  
     if ((tabuleiro[0][0] == jogador && tabuleiro[1][1] == jogador && tabuleiro[2][2] == jogador) ||
         (tabuleiro[0][2] == jogador && tabuleiro[1][1] == jogador && tabuleiro[2][0] == jogador))
     {
@@ -45,7 +42,7 @@ bool verificarVitoria(char tabuleiro[3][3], char jogador)
     return false;
 }
 
-// Função para jogar
+
 void jogar(Jogador &jogador1, Jogador &jogador2)
 {
     char tabuleiro[3][3] = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', '9'}};
@@ -59,14 +56,14 @@ void jogar(Jogador &jogador1, Jogador &jogador2)
         int posicao;
         cin >> posicao;
 
-        // Verificar se a posição é válida
+      
         if (posicao < 1 || posicao > 9)
         {
-            cout << "Posicao inválida, tente novamente." << endl;
+            cout << "Posicao invÃ¡lida, tente novamente." << endl;
             continue;
         }
 
-        // Atualizar tabuleiro
+      
         int linha = (posicao - 1) / 3;
         int coluna = (posicao - 1) % 3;
         if (tabuleiro[linha][coluna] != 'X' && tabuleiro[linha][coluna] != 'O')
@@ -80,7 +77,7 @@ void jogar(Jogador &jogador1, Jogador &jogador2)
             continue;
         }
 
-        // Verificar vitória
+    
         if (verificarVitoria(tabuleiro, jogadorAtual))
         {
             imprimirTabuleiro(tabuleiro);
@@ -99,11 +96,11 @@ void jogar(Jogador &jogador1, Jogador &jogador2)
             return;
         }
 
-        // Alternar jogador
+       
         jogadorAtual = (jogadorAtual == 'X') ? 'O' : 'X';
     }
 
-    // Empate
+   
     imprimirTabuleiro(tabuleiro);
     jogador1.empates++;
     jogador2.empates++;
@@ -136,8 +133,8 @@ int main()
     } while (jogarNovamente == 's' || jogarNovamente == 'S');
 
     cout << "\nResultados finais:\n";
-    cout << jogador1.nome << " - Vitórias: " << jogador1.vitorias << ", Derrotas: " << jogador1.derrotas << ", Empates: " << jogador1.empates << endl;
-    cout << jogador2.nome << " - Vitórias: " << jogador2.vitorias << ", Derrotas: " << jogador2.derrotas << ", Empates: " << jogador2.empates << endl;
+    cout << jogador1.nome << " - VitÃ³rias: " << jogador1.vitorias << ", Derrotas: " << jogador1.derrotas << ", Empates: " << jogador1.empates << endl;
+    cout << jogador2.nome << " - VitÃ³rias: " << jogador2.vitorias << ", Derrotas: " << jogador2.derrotas << ", Empates: " << jogador2.empates << endl;
 
     return 0;
 }
